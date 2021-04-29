@@ -1,0 +1,71 @@
+asg Asg4 {
+	// TODO Auto-generated stub
+	adt = BstADT
+	impl = BstIMP
+	
+	group EqualTo {
+	    tests IsEqual {
+	        noBranches: <a>.equalTo(x) == true
+	        branches: <b,a,c>.equalTo(x) == true
+	    }
+	    tests NotEqual {
+	        isNull: <b,a,c>.equalTo(x) == false //x is null
+	        isDifferent: <b,a,c>.equalTo(x) == false //x = < a/b >
+	    }
+	}
+	
+	group insert {
+	    tests InsertsToLeft {
+	        a: <b,c>.insert(a) -> <b,a,c>
+	        a2: <d,c,b,e>.insert(a) -> <d,c,b,a,e>
+	    }
+	    tests InsertsToRight {
+	        c: <b,a>.insert(c) -> <b,a,c>
+	        d: <b,a,c>.insert(d) -> <b,a,c,d>
+	    }
+	    tests InsertsToNull {
+	        nullInsert: <>.insert(b) -> <b>
+	    }
+	    tests AlreadyThere {
+	        a: <b,a,c>.insert(a) !!IllegalArgumentException
+	        b: <b>.insert(b) !!IllegalArgumentException
+	    }
+	}
+	
+	group Preorder {
+	    tests Empty {
+	        emptyPre: <>.preorder() == ""
+	    }
+	    tests Pre {
+	        bac: <b,a,c>.preorder() == "bac"
+	        cbade: <c,b,a,d,e>.preorder() == "cbade"
+	    }
+	}
+	
+	group remove {
+	    tests NotThere {
+	        bac: <b,a,c>.remove(d) -> <b,a,c>
+	        b:<b>.remove(a) -> <b>
+	    }
+	    tests RemoveFromLeft {
+	        bac: <b,a,c>.remove(a) -> <b,c>
+	        cbade: <c,b,a,d,e>.remove(b) -> <c,a,d,e>
+	    }
+	    tests RemoveFromRight {
+	        bac: <b,a,c>.remove(c) -> <b,a>
+	        cbade: <c,b,a,d,e>.remove(d) -> <c,b,a,e>
+	        cbade2: <c,b,a,d,e>.remove(e) -> <c,b,a,d>
+	    }
+	}
+	
+	group toString {
+	    tests Empty {
+            emptyPre: <>.preorder() == "<>"
+        }
+        tests String {
+            bac: <b,a,c>.preorder() == "<b,a,c>"
+            cbade: <c,b,a,d,e>.preorder() == "<c,b,a,d,e>"
+        }
+	}
+}
+
