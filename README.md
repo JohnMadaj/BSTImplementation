@@ -5,4 +5,4 @@ Binary Search Tree is a data structure used to store comparable values in a top-
 
 This implementation uses Nodes with char data values for readability sake, but generally a Comparable value will suffice to allow for flexible usage.
 
-![Visualizer of BST Structure](BSTImplementation/Visualizer.png?raw=true "Visualizer")
+![plot](.BSTImplementation/Visualizer.png)
